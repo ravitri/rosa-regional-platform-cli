@@ -10,6 +10,13 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
+    groups:
+      aws-sdk:
+        patterns:
+          - "github.com/aws/*"
+      all-go-deps:
+        patterns:
+          - "*"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
