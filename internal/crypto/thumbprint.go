@@ -27,9 +27,9 @@ func GetOIDCThumbprint(ctx context.Context, issuerURL string) (string, error) {
 		return "", fmt.Errorf("OIDC issuer URL must use HTTPS, got: %s", parsedURL.Scheme)
 	}
 
-	client := &http.Client{
-		Transport: &http.Transport{Proxy: http.ProxyFromEnvironment},
-	}
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.Proxy = http.ProxyFromEnvironment
+	client := &http.Client{Transport: transport}
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, issuerURL, nil)
 	if err != nil {
 		return "", fmt.Errorf("failed to build request: %w", err)
