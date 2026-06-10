@@ -17,6 +17,8 @@ by combining IAM and VPC resources.`,
 
 	cmd.AddCommand(newCreateCommand())
 	cmd.AddCommand(newListCommand())
+	cmd.AddCommand(newKubeconfigCommand())
+	cmd.AddCommand(newGetTokenCommand())
 
 	return cmd
 }
